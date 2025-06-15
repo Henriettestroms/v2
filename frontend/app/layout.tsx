@@ -1,6 +1,9 @@
+'use client';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from "../components/Navigation";
+import { useEffect, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +25,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [userRole, setUserRole] = useState<'docente' | 'estudiante' | null>(null);
+
+  useEffect(() => {
+    const role = localStorage.getItem('userType');
+    if (role === 'docente' || role === 'estudiante') {
+      setUserRole(role);
+    } else {
+      setUserRole(null);
+    }
+  }, []);
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="es">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Navigation userRole={userRole} />
+        <main className="min-h-screen bg-gray-50">{children}</main>
       </body>
     </html>
   );
