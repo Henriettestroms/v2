@@ -3,12 +3,14 @@ version: "3.4"
 services:
   mysql:
     image: mysql
-    ports: 
+    ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - ./API_EJEMPLO/init:/docker-entrypoint-initdb.d
+      - ./API_EJEMPLO/init:/docker-entrypoint-initdb.d/ejemplo
+      - ./API_PREGUNTAS/init.sql:/docker-entrypoint-initdb.d/init_preguntas.sql
+      - ./API_RESPUESTASESTUDIANTES/init.sql:/docker-entrypoint-initdb.d/init_respuestas.sql
 
 # Contenedor para la API de ejemplo (sacar)
   api_ejemplo:
@@ -46,10 +48,9 @@ services:
     depends_on:
       - mysql
 
-# #Api de respuestas
-#   api_respuestas:
-#     build: ./API_RESPUESTASESTUDIANTES
-#     ports:
-#       - "8081:8081"
-#     depends_on:
-#       - mysql
+  api_respuestas:
+    build: ./API_RESPUESTASESTUDIANTES
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql

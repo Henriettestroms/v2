@@ -115,3 +115,18 @@ DB_HOST = "host.docker.internal"
 ```
 
 Una vez levantado todo, deberían poder ver en Docker todos sus contenedores corriendo.
+
+
+### Endpoints API_RESPUESTASESTUDIANTES
+
+La API de respuestas cuenta con las siguientes rutas para manejar las respuestas de cada estudiante:
+
+```http
+GET    /answers            # Obtener todas las respuestas
+GET    /answers/:id        # Obtener una respuesta específica
+POST   /answers            # Crear una nueva respuesta
+PUT    /answers/:id        # Actualizar una respuesta
+DELETE /answers/:id        # Eliminar una respuesta
+```
+
+La base de datos correspondiente se crea automáticamente desde `API_RESPUESTASESTUDIANTES/init.sql` al levantar los contenedores.
