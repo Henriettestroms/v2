@@ -46,6 +46,15 @@ services:
     depends_on:
       - mysql
 
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+
 # #Api de respuestas
 #   api_respuestas:
 #     build: ./API_RESPUESTASESTUDIANTES
