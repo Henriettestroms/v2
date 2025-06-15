@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f9fafb; /* bg-gray-50 */
   --foreground: #171717;
 }
 
@@ -12,12 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Removemos la preferencia de tema oscuro para mantener el diseño consistente */
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
+*/
 
 body {
   background: var(--background);
